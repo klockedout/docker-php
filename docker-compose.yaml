@@ -14,7 +14,8 @@ services:
         build : # build custom image
           dockerfile : ./php/Dockerfile
         volumes :
-          - ./app:/app
+          - /var/www/html/vendor
+          - ./app:/var/www/html 
 
 
   # mysql
@@ -42,4 +43,4 @@ services:
 
 # Let docker optimize the location of the data
 volumes : 
-  mysqldata
+  mysqldata:
