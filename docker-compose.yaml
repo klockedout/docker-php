@@ -1,16 +1,21 @@
 services:
-  # nginx
 
+  # nginx
   web : 
         image : nginx:latest
         ports : 
           - "80:80"  # port 80 from local marchine map to port 80 on container
+        volumes:
+          # Mount my local default.conf file, replacing container default nginx config file
+          - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
   # php
-
   app : 
         build : # build custom image
           dockerfile : ./php/Dockerfile
+        volumes :
+          - ./app:/app
+
 
   # mysql
   # redis
