@@ -1,0 +1,16 @@
+services:
+  # nginx
+
+  web : 
+        image : nginx:latest
+        ports : 
+          - "80:80"  # port 80 from local marchine map to port 80 on container
+
+  # php
+
+  app : 
+        build : # build custom image
+          dockerfile : ./php/Dockerfile
+
+  # mysql
+  # redis
