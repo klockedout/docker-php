@@ -18,4 +18,28 @@ services:
 
 
   # mysql
+  db : 
+        image : mysql:9.2.0
+
+        volumes : 
+          - mysqldata:/var/lib/mysql
+
+        ports : 
+          - "3306:3306"
+
+        restart : unless-stopped
+
+        # pass data to the db 
+        environment : 
+          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+          MYSQL_USER: ${MYSQL_USER}
+          MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+          MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+
   # redis
+
+
+# Let docker optimize the location of the data
+volumes : 
+  mysqldata
